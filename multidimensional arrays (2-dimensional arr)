@@ -1,0 +1,30 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        //multidimensional arrays (2-dimensional arr)
+        char[][] syms = new char[2][2];
+        syms[0][0] = 't';
+        System.out.println("Out from array syms : " + syms[0][0]);
+
+        //elements inside array inside 2-dim. array
+        int[][] nums = new int[][]{
+                {1, 2},
+                {4, 5},
+                {7, 9},
+        };
+        //7 out cause place 1 in 2d-array and place 2 in array inside 2d-array
+        System.out.println("Out from array nums : " + nums[0][1]);
+
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums[i].length; j++) {
+                System.out.println("Array out: " + nums[i][j]);
+                System.out.println("Arrays.toString(nums): " + Arrays.toString(nums));
+            }
+
+        }
+    }
+}
