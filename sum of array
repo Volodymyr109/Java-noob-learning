@@ -1,0 +1,20 @@
+public class Main {
+
+    public static void main(String[] args) {
+
+        byte[] nums1 = new byte[] {5, 6, 7};
+
+        int sum1 = sumArr(nums1);
+        System.out.println("Summa 1: " + sum1);
+    }
+
+    public static int sumArr(byte[] arr) {
+
+        int sum = 0;
+        for (byte i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
+
+    }
+}
