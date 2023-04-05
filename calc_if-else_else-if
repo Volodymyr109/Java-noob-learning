@@ -3,6 +3,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
+        calc(args);
+
+    }
+
+    public static void calc(String[] args) {
         //operator als String!
         String operator;
         double num1, num2, res;
@@ -16,7 +22,7 @@ public class Main {
         num1 = input.nextDouble();
 
         System.out.print("Enter num 2: ");
-         num2 = input.nextDouble();
+        num2 = input.nextDouble();
 
         if (operator.equals("+")){
             res = num1 + num2;
@@ -35,3 +41,4 @@ public class Main {
         }
     }
 }
+
