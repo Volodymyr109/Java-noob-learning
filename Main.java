@@ -1,50 +1,29 @@
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        char operator;
-        double num1, num2, res;
+        System.out.println("Car: ");
 
-        Scanner input = new Scanner(System.in);
+        Car audi80 = new Car(250, 2300, "Black", new byte[] {100, 0, 10});
+        audi80.engine.setValues(true, 1000000);
+        audi80.engine.infoEngine();
 
-        System.out.println("What i have to do? +, -, *, or / ");
-        operator = input.next().charAt(0);
+        System.out.println("Truck: ");
 
-        System.out.println("Enter Num 1: ");
-        num1 = input.nextDouble();
+        Truck MAN = new Truck(8000, new byte[] {15, 0, 110}, true);
+        MAN.engine.setValues(false, 500000);
+        MAN.engine.infoEngine();
 
-        System.out.println("Enter Num 2: ");
-        num2 = input.nextDouble();
+        Car flyCar = new Car(550, 1000, "Blue", new byte[] {0, 0, 0}) {
 
-        switch (operator) {
+            @Override
+            public void moveObject(float speed); {
+                this.engine.inOn(true);
+                System.out.println(" das Auto kann fliegen! ");
+            }
 
-            case '+':
-                res = num1 + num2;
-                System.out.println("Results: " + num1 + " + " + num2 + " = "+ res);
-                break;
+        };
 
-            case '-':
-                res = num1 - num2;
-                System.out.println("Results: " + num1 + " - " + num2 + " = "+ res);
-                break;
-
-            case '*':
-                res = num1 * num2;
-                System.out.println("Results: " + num1 + " * " + num2 + " = "+ res);
-                break;
-
-            case '/':
-                res = num1 / num2;
-                System.out.println("Results: " + num1 + " / " + num2 + " = "+ res);
-                break;
-
-            default:
-                System.out.println("Invalid input!");
-                break;
-        }
-
-    input.close();
+        flyCar.moveObject(450);
     }
 }
