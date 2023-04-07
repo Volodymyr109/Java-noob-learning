@@ -1,0 +1,16 @@
+public class Person {
+
+    public static int count;
+    public static int health;
+    public Person() {
+        count++;
+        health = 100;
+    }
+
+    public static void getCount() {
+        System.out.println("Menge Obj's: " + count);
+    }
+    public static void getHealth() {
+        System.out.println("HP's : " + health);
+    }
+}
