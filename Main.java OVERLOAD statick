@@ -1,0 +1,48 @@
+import db.DB;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+
+        //final make a const
+        final int count = 10;
+
+        Person obj1 = new Person();
+        Person.getCount();
+        Person.getHealth();
+
+        Person obj2 = new Person();
+        Person.getCount();
+        Person.getHealth();
+
+        Person obj3 = new Person();
+        Person.getCount();
+        Person.getHealth();
+
+        Person obj4 = new Person();
+        Person.getCount();
+        Person.getHealth();
+
+
+//        Person.count = 5;
+//        System.out.println(Person.count);
+
+        // db from database db package
+        //DB db = new DB();
+
+        info( "Hello World");
+
+    }
+
+    public static final void info(String word) {
+        System.out.println(word + "!");
+    }
+
+    public static final void info(String word, String word2) {
+        System.out.println(word + "!");
+    }
+}
+
+
+
