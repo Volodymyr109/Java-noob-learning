@@ -1,0 +1,45 @@
+class Person implements Cloneable{
+    private String name;
+    private int age;
+
+    Person(String name, int age) throws CloneNotSupportedException {
+        this.name=name;
+        this.age=age;
+    }
+    void setName(String name){
+        this.name = name;
+    }
+    void setAge(int age){
+        this.age = age;
+    }
+    void display(){
+        System.out.printf("Person %s \n", name);
+    }
+
+    public Person clone() throws CloneNotSupportedException{
+        return (Person) super.clone();
+    }
+    
+    
+    
+    try {
+        Person tom = null;
+        try {
+            tom = new Person("Tom", 23);
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        Person bob = null;
+        try {
+            bob = tom.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        bob.setName("Bob");
+        tom.display();      // Person Tom
+    }
+    catch(CloneNotSupportedException ex) {
+
+        System.out.println("Clonable not implemented");
+    }
+}
