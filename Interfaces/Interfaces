@@ -1,0 +1,16 @@
+public interface Interface1 {
+
+    String c = "dwdwdwd";
+    int b = 15;
+    void yourName();
+    default void yourAge() {
+        System.out.println("default void yourAge: 22");
+    }
+
+}
+
+public interface Interface2 {
+
+    String c = "aa";
+    int b = 13;
+}
