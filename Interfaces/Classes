@@ -1,0 +1,31 @@
+public class Main1 extends Class1 implements Interface1, Interface2 {
+
+    public static void main(String[] args){
+
+        new Main1().yourAge();
+        System.out.println("const int b from interface 1: " + Interface1.b);
+        System.out.println("const int b from interface 2: " +Interface2.b);
+    }
+
+    @Override
+    public void yourName() {
+        System.out.println("Name");
+    }
+
+    @Override
+    void Bye() {
+        System.out.println("Bye!");
+    }
+}
+
+
+abstract class Class1 {
+    String s;
+    int a;
+
+    void hello() {
+        System.out.println("hELLO!");
+    }
+
+    abstract void Bye();
+}
