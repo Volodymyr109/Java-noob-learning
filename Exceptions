@@ -33,6 +33,7 @@ public class Main {
             nums[7] = 10; // try to get a 7 el (4 exists - err)
         } catch (ArrayIndexOutOfBoundsException exc) {
             System.out.println("List have 4 elements! Try again!");
+            System.out.println(exc);
         }
     }
 }
