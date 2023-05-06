@@ -1,0 +1,29 @@
+import java.util.Stack;
+
+public class Stack_Java {
+
+    public static void main(String[] args) {
+
+        Stack stack = new Stack();
+        // check ob stack voll ist
+        System.out.println("stack.empty(): " + stack.empty());
+        System.out.println("---------PUSH---------");
+        stack.push(1);
+        stack.push(29);
+        stack.push(31);
+        stack.push(44);
+        stack.push(51);
+        stack.push(65);
+        System.out.println("Out stack: " + stack);
+        System.out.println("is stack now empty?: " + stack.empty());
+        System.out.println("Peek of stack with 6 el: " + stack.peek());
+        System.out.println("51 in stack on place: " + stack.search(51));
+        System.out.println("Get el from stack nr. 2: " + stack.get(2));
+
+        System.out.println("---------POP---------");
+        stack.pop();
+        stack.pop();
+        System.out.println("Stack + 2x pop: " + stack);
+        System.out.println("Peek of stack with 2 el pop: " + stack.peek());
+    }
+}
