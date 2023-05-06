@@ -1,0 +1,22 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Stack_Java {
+
+    // try catch exp err
+    public static void main(String[] args) {
+        File file = new File("ggdgd");
+        try {
+            Scanner scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");;
+        }
+    }
+
+    // throws exp err
+    public void readFile() throws FileNotFoundException {
+        File file = new File("ggdgd");
+        Scanner scanner = new Scanner(file);
+    }
+}
