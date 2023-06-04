@@ -1,0 +1,51 @@
+package iterator;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class IteratorBeispiel {
+
+    public static void main(String[] args) {
+
+        Integer[] array = new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+        // bsp mit linkedlist
+        LinkedList<Integer> list = new LinkedList<>();
+
+        Collections.addAll(list, array);
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+
+        Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        for(Integer integer: list) {
+            System.out.println(integer);
+        }
+
+
+        ///////////////////////////////////////////////////////
+        LinkedList<Integer> list = getRandomList();
+
+        ListIterator<Integer> iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            int item = iterator.next();
+            if (item >= 128) {
+                iterator.remove(); // schnell remove mit C zeit
+            }
+        }
+    }
+    public static LinkedList<Integer> getRandomList() {
+        LinkedList<Integer> list = new LinkedList<>();
+        for (int i = 0; i < 100000; i++) {
+            list.add((int) Math.round(Math.random() * 256));
+        }
+        return list;
+    }
+}
