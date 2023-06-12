@@ -1,0 +1,55 @@
+import java.io.*;
+
+public class Persistez_beispiel implements Serializable {
+    private String name;
+    private int age;
+
+    public Persistez_beispiel(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void saveToFile(String filename) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(this);
+            objectOut.close();
+            fileOut.close();
+            System.out.println("Obj gespeichert in file " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Persistez_beispiel loadFromFile(String filename) {
+        Persistez_beispiel person = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(filename);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            person = (Persistez_beispiel) objectIn.readObject();
+            objectIn.close();
+            fileIn.close();
+            System.out.println("Obj ist aus der file gelad. " + filename);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return person;
+    }
+
+    public static void main(String[] args) {
+        Persistez_beispiel person1 = new Persistez_beispiel("John", 30);
+
+        // Сохраняем объект person1 в файл
+        person1.saveToFile("Persistenz_beispiel.ser");
+
+        // Загружаем объект из файла
+        Persistez_beispiel person2 = Persistez_beispiel.loadFromFile("Persistenz_beispiel.ser");
+
+        // Выводим информацию о загруженном объекте
+        if (person2 != null) {
+            System.out.println("Имя: " + person2.name);
+            System.out.println("Возраст: " + person2.age);
+        }
+    }
+}
