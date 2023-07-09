@@ -1,8 +1,9 @@
-package threads;
-
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 public class Umschalten {
     public static void main(String[] args) {
@@ -17,8 +18,7 @@ public class Umschalten {
         frame.setVisible(true);
     }
 }
-
-class Model {
+class Model extends Observable {
     private boolean active;
 
     public Model() {
@@ -29,11 +29,52 @@ class Model {
         return this.active;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void toggleActive() {
+        active = !active;
+        setChanged();
+        notifyObservers();
     }
 }
+class View extends JPanel implements Observer {
+    private Model model;
+    private JButton leftButton;
+    private JButton rightButton;
 
+    public View(Model model) {
+        this.model = model;
+        model.addObserver(this);
+
+        setLayout(new FlowLayout());
+
+        leftButton = new JButton("Links");
+        rightButton = new JButton("Rechts");
+        rightButton.setEnabled(false);
+
+        add(leftButton);
+        add(rightButton);
+
+        leftButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.toggleActive();
+            }
+        });
+
+        rightButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.toggleActive();
+            }
+        });
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        boolean isActive = model.isActive();
+        leftButton.setEnabled(!isActive);
+        rightButton.setEnabled(isActive);
+    }
+};
 class Controller {
     private Model model;
     private View view;
@@ -41,57 +82,5 @@ class Controller {
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
-
-        // Set initial button states
-        view.setLeftButtonEnabled(model.isActive());
-        view.setRightButtonEnabled(!model.isActive());
-
-        // Add action listeners to buttons
-        view.addLeftButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.setActive(!model.isActive());
-                view.setLeftButtonEnabled(model.isActive());
-                view.setRightButtonEnabled(!model.isActive());
-            }
-        });
-
-        view.addRightButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.setActive(!model.isActive());
-                view.setLeftButtonEnabled(model.isActive());
-                view.setRightButtonEnabled(!model.isActive());
-            }
-        });
-    }
-}
-
-class View extends JPanel {
-    private JButton leftButton;
-    private JButton rightButton;
-
-    public View(Model model) {
-        this.leftButton = new JButton("Left");
-        this.rightButton = new JButton("Right");
-
-        add(leftButton);
-        add(rightButton);
-    }
-
-    public void setLeftButtonEnabled(boolean enabled) {
-        leftButton.setEnabled(enabled);
-    }
-
-    public void setRightButtonEnabled(boolean enabled) {
-        rightButton.setEnabled(enabled);
-    }
-
-    public void addLeftButtonListener(ActionListener listener) {
-        leftButton.addActionListener(listener);
-    }
-
-    public void addRightButtonListener(ActionListener listener) {
-        rightButton.addActionListener(listener);
     }
 }
